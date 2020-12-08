@@ -65,8 +65,8 @@ if abs(diff_percent) > 5:
     latest_three_articles = news_articles[:3]
     print(latest_three_articles)
 
-    ## STEP 3: Use twilio.com/docs/sms/quickstart/python
-    #to send a separate message with each article's title and description to your phone number. 
+## STEP 3: Use twilio.com/docs/sms/quickstart/python
+#to send a separate message with each article's title and description to your phone number. 
 
 #TODO 8. - Create a new list of the first 3 article's headline and description using list comprehension.
 
