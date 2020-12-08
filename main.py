@@ -2,10 +2,11 @@ import requests
 
 # Stock API
 STOCK_ENDPOINT = "https://www.alphavantage.co/query"
-AV_api_key = "OS9Y99ICILR9MOD2"
+STOCK_API_KEY = "OS9Y99ICILR9MOD2"
 
 # News API
 NEWS_ENDPOINT = "https://newsapi.org/v2/everything"
+NEWS_API_KEY = "ddaf147bdfb2494cbf825a828418cd21"
 
 STOCK_NAME = "TSLA"
 COMPANY_NAME = "Tesla Inc"
@@ -15,7 +16,12 @@ stock_params = {
     "function":"TIME_SERIES_DAILY",
     "symbol": STOCK_NAME,
     "outputsize": "compact",
-    "apikey": AV_api_key
+    "apikey": STOCK_API_KEY
+}
+
+news_params = {
+    "qInTitle": COMPANY_NAME,
+    "apiKey": NEWS_API_KEY
 }
 
 ## STEP 1: Use https://www.alphavantage.co/documentation/#daily
@@ -46,17 +52,18 @@ else:
 diff_percent = round(difference / float(yesterday_closing_price) * 100)
 print(diff_percent)
 
-#TODO 5. - If TODO4 percentage is greater than 5 then print("Get News").
-if diff_percent > 5:
-    print("Get News")
+## STEP 2: https://newsapi.org/ 
+# Get the first 3 news pieces for the COMPANY_NAME. 
 
-    ## STEP 2: https://newsapi.org/ 
-    # Instead of printing ("Get News"), actually get the first 3 news pieces for the COMPANY_NAME. 
-
-#TODO 6. - Instead of printing ("Get News"), use the News API to get articles related to the COMPANY_NAME.
+#TODO 6. - News API to get articles related to the COMPANY_NAME.
+if abs(diff_percent) > 5:
+    news_resp = requests.get(url=NEWS_ENDPOINT, params=news_params)
+    news_articles = news_resp.json()["articles"]
+    
 
 #TODO 7. - Use Python slice operator to create a list that contains the first 3 articles. Hint: https://stackoverflow.com/questions/509211/understanding-slice-notation
-
+    latest_three_articles = news_articles[:3]
+    print(latest_three_articles)
 
     ## STEP 3: Use twilio.com/docs/sms/quickstart/python
     #to send a separate message with each article's title and description to your phone number. 
