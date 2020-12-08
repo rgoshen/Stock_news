@@ -1,16 +1,17 @@
 import requests
 from twilio.rest import Client
+import os
 
 # Stock API
 STOCK_ENDPOINT = "https://www.alphavantage.co/query"
-STOCK_API_KEY = "OS9Y99ICILR9MOD2"
+STOCK_API_KEY = os.environ.get("AV_API_KEY")
 
 # News API
 NEWS_ENDPOINT = "https://newsapi.org/v2/everything"
-NEWS_API_KEY = "ddaf147bdfb2494cbf825a828418cd21"
+NEWS_API_KEY = os.environ.get("NEWS_API_KEY")
 
 # twilio api
-auth_token = "72e9d557741e3d349a6b13801044eae9"
+auth_token = os.environ.get("TWILIO_AUTH_TOKEN")
 account_sid = "AC1940bb58ee26f57f2ed87c48ccf402d6"
 from_num = "+15345444344"
 to_num = "+15206390031"
