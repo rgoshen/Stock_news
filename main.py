@@ -12,7 +12,7 @@ NEWS_API_KEY = os.environ.get("NEWS_API_KEY")
 
 # twilio api
 auth_token = os.environ.get("TWILIO_AUTH_TOKEN")
-account_sid = "AC1940bb58ee26f57f2ed87c48ccf402d6"
+account_sid = os.environ.get("TWILIO_ACNT_ID")
 from_num = "+15345444344"
 to_num = "+15206390031"
 
